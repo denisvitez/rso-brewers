@@ -34,7 +34,6 @@ public class BrewersResource {
 
     @POST
     public Response createBrewer(Brewer brewer) {
-
         if (brewer.getName() == null || brewer.getCountry() == null || brewer.getEstablished() == null) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         } else {
@@ -45,6 +44,17 @@ public class BrewersResource {
             return Response.status(Response.Status.CREATED).entity(brewer).build();
         } else {
             return Response.status(Response.Status.CONFLICT).entity(brewer).build();
+        }
+    }
+
+    @DELETE
+    @Path("{brewerId}")
+    public Response deleteBrewer(@PathParam("brewerId") int brewerId) {
+        boolean deleted = bean.deleteBrewer(brewerId);
+        if (deleted) {
+            return Response.status(Response.Status.GONE).build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).build();
         }
     }
 }
