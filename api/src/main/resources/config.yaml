@@ -9,9 +9,9 @@ kumuluzee:
       port: 5100
   datasources:
     - jndi-name: jdbc/BrewersDS
-      connection-url: jdbc:postgresql://34.77.128.182:5432/brewers
+      connection-url: jdbc:postgresql://18.236.151.24:5432/brewers
       username: dbuser
-      password: postgres2019
+      password: postgres
       max-pool-size: 20
   health:
     checks:
