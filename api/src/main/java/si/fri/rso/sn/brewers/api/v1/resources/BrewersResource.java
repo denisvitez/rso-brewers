@@ -28,9 +28,23 @@ public class BrewersResource {
 
     @GET
     public Response getBrewers() {
-
         List<Brewer> items = bean.getBrewers();
-
         return Response.ok(items).build();
+    }
+
+    @POST
+    public Response createBrewer(Brewer brewer) {
+
+        if (brewer.getName() == null || brewer.getCountry() == null || brewer.getEstablished() == null) {
+            return Response.status(Response.Status.BAD_REQUEST).build();
+        } else {
+            brewer = bean.createBrewer(brewer);
+        }
+        //Handle success/failure
+        if (brewer.getId() != null) {
+            return Response.status(Response.Status.CREATED).entity(brewer).build();
+        } else {
+            return Response.status(Response.Status.CONFLICT).entity(brewer).build();
+        }
     }
 }

@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import java.time.Instant;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -53,6 +54,7 @@ public class BrewersBean {
     public Brewer createBrewer(Brewer item) {
         try {
             beginTx();
+            item.setDateInserted(Instant.now());
             em.persist(item);
             commitTx();
         } catch (Exception e) {
