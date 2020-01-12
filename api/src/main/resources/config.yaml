@@ -10,8 +10,8 @@ kumuluzee:
   datasources:
     - jndi-name: jdbc/BrewersDS
       connection-url: jdbc:postgresql://34.77.128.182:5432/brewers
-      username: postgres
-      password: wvha-1dY
+      username: dbuser
+      password: postgres2019
       max-pool-size: 20
   health:
     checks:
