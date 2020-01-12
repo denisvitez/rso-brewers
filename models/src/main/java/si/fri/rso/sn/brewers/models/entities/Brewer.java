@@ -14,7 +14,7 @@ public class Brewer {
     private Integer id;
 
     @Column(name = "name")
-    private double name;
+    private String name;
 
     @Column(name = "country")
     private String country;
@@ -41,11 +41,11 @@ public class Brewer {
         this.dateInserted = dateInserted;
     }
 
-    public double getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(double name) {
+    public void setName(String name) {
         this.name = name;
     }
 

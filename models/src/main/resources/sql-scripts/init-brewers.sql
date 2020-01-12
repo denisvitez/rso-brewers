@@ -1,3 +1,3 @@
-INSERT INTO brewers (name, country, date_inserted, established) VALUES ('Hipsters', 'Slovenia', TIMESTAMP '2019-11-30 12:00:00', '2012-01-01');
-INSERT INTO brewers (name, country, date_inserted, established) VALUES ('Craft beer Ltd', 'United Kingdom', TIMESTAMP '2019-11-30 12:00:00', '1990-01-01');
-INSERT INTO brewers (name, country, date_inserted, established) VALUES ('Brewers Inc', 'USA', TIMESTAMP '2019-11-30 12:00:00', '2000-01-01');
+INSERT INTO brewers (name, country, date_inserted, established) VALUES ('Hipsters', 'Slovenia', TIMESTAMP '2019-11-30 12:00:00', TIMESTAMP '2012-01-01');
+INSERT INTO brewers (name, country, date_inserted, established) VALUES ('Craft beer Ltd', 'United Kingdom', TIMESTAMP '2019-11-30 12:00:00', TIMESTAMP '1990-01-01');
+INSERT INTO brewers (name, country, date_inserted, established) VALUES ('Brewers Inc', 'USA', TIMESTAMP '2019-11-30 12:00:00', TIMESTAMP '2000-01-01');
