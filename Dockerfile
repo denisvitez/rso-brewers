@@ -6,6 +6,6 @@ WORKDIR /app
 
 ADD ./api/target/brewers-api-1.0.0-SNAPSHOT.jar /app
 
-EXPOSE 8080
+EXPOSE 5100
 
 CMD java -jar brewers-api-1.0.0-SNAPSHOT.jar

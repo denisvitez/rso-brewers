@@ -11,7 +11,7 @@ services:
   sn-brewers:
     image: denisvitez/rso-brewers:latest
     ports:
-      - 8080:8080
+      - 5100:5100
     environment:
       KUMULUZEE_DATASOURCES0_CONNECTIONURL: jdbc:postgresql://postgres:5432/brewers
       KUMULUZEE_CONFIG_ETCD_HOSTS: http://etcd:2379
