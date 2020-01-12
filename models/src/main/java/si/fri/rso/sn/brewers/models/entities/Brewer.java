@@ -22,6 +22,9 @@ public class Brewer {
     @Column(name = "date_inserted")
     private Instant dateInserted;
 
+    @Column(name = "established")
+    private Instant established;
+
     public Integer getId() {
         return id;
     }
@@ -52,5 +55,13 @@ public class Brewer {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    public Instant getEstablished() {
+        return established;
+    }
+
+    public void setEstablished(Instant established) {
+        this.established = established;
     }
 }

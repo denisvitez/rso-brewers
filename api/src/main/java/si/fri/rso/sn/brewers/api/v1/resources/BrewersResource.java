@@ -27,7 +27,7 @@ public class BrewersResource {
     protected UriInfo uriInfo;
 
     @GET
-    public Response getBeers() {
+    public Response getBrewers() {
 
         List<Brewer> items = bean.getBrewers();
 

@@ -31,7 +31,6 @@ public class BrewersBean {
     @PostConstruct
     private void init() {
         httpClient = ClientBuilder.newClient();
-//        baseUrlFriends = "http://localhost:8081"; // only for demonstration
     }
 
 
