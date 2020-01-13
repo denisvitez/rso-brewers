@@ -23,7 +23,7 @@ spec:
         - name: KUMULUZEE_CONFIG_ETCD_HOSTS
           value: http://etcd:2379
         - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
-          value: jdbc:postgresql://postgres-brewers:5432/brewers
+          value: jdbc:postgresql://18.236.151.24:5432/brewers
         - name: KUMULUZEE_DATASOURCES0_PASSWORD
           valueFrom:
             secretKeyRef:
@@ -47,7 +47,7 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - port: 8081
+  - port: 5100
     protocol: TCP
     targetPort: 5100
   selector:
