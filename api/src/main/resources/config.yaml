@@ -34,8 +34,8 @@ kumuluzee:
                             <Console name="console" target="SYSTEM_OUT">
                                 <PatternLayout pattern="%d %p %marker %m %X %ex %n"/>
                             </Console>
-                            <Socket name="logstash" host="53ce6367-e595-4443-91c8-19ceb09db4c9-ls.logit.io"
-                            port="12303" protocol="tcp">
+                            <Socket name="logstash" host="5b56bd05-b52f-4fa9-a0ba-ece6151e16d9-ls.logit.io"
+                            port="23619" protocol="tcp">
                                 <JSONLayout complete="false" compact="true" eventEol="true" charset="UTF-8" properties="true"/>
                             </Socket>
                         </Appenders>

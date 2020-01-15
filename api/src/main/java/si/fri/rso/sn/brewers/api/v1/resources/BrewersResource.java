@@ -1,6 +1,7 @@
 package si.fri.rso.sn.brewers.api.v1.resources;
 
 import com.kumuluz.ee.logs.cdi.Log;
+import si.fri.rso.sn.brewers.models.dtos.Beer;
 import si.fri.rso.sn.brewers.models.entities.Brewer;
 import si.fri.rso.sn.brewers.services.beans.BrewersBean;
 
@@ -56,5 +57,19 @@ public class BrewersResource {
         } else {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
+    }
+
+    @GET
+    @Path("{breweryId}/beers")
+    public Response getBeers(@PathParam("breweryId") Integer breweryId) {
+
+        List<Beer> beers;
+        beers = bean.getBeers(breweryId);
+
+        if (beers == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        return Response.status(Response.Status.OK).entity(beers).build();
     }
 }

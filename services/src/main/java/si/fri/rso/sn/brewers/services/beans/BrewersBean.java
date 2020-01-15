@@ -1,5 +1,7 @@
 package si.fri.rso.sn.brewers.services.beans;
 
+import com.kumuluz.ee.discovery.annotations.DiscoverService;
+import si.fri.rso.sn.brewers.models.dtos.Beer;
 import si.fri.rso.sn.brewers.models.entities.Brewer;
 import si.fri.rso.sn.brewers.services.configuration.AppProperties;
 
@@ -8,12 +10,19 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotFoundException;
+import javax.ws.rs.ProcessingException;
+import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.core.GenericType;
 import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 @RequestScoped
@@ -28,6 +37,10 @@ public class BrewersBean {
     private AppProperties appProperties;
 
     private Client httpClient;
+
+    @Inject
+    @DiscoverService("sn-beers")
+    private Optional<String> baseUrlBeers;
 
     @PostConstruct
     private void init() {
@@ -95,6 +108,23 @@ public class BrewersBean {
             return false;
 
         return true;
+    }
+
+    public List<Beer> getBeers(Integer breweryId) {
+
+        if (appProperties.isExternalServicesEnabled() && baseUrlBeers.isPresent()) {
+            try {
+                List<Beer> beers = httpClient
+                        .target(baseUrlBeers.get() + "/v1/beers/filtered?where=breweryId:EQ:" + breweryId)
+                        .request().get(new GenericType<List<Beer>>() {
+                        });
+                return beers;
+            } catch (WebApplicationException | ProcessingException e) {
+                log.severe(e.getMessage());
+                throw new InternalServerErrorException(e);
+            }
+        }
+        return null;
     }
 
     private void beginTx() {
