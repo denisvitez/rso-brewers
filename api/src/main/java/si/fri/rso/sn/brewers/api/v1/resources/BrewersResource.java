@@ -33,6 +33,24 @@ public class BrewersResource {
         return Response.ok(items).build();
     }
 
+    @GET
+    @Path("/{brewerId}")
+    public Response getBrewer(@PathParam("brewerId") Integer brewerId) {
+        Brewer b = bean.getBrewer(brewerId);
+        if (b == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        return Response.status(Response.Status.OK).entity(b).build();
+    }
+
+    @GET
+    @Path("/filtered")
+    public Response getBrewersFiltered() {
+        List<Brewer> b;
+        b = bean.getBrewersFilter(uriInfo);
+        return Response.status(Response.Status.OK).entity(b).build();
+    }
+
     @POST
     public Response createBrewer(Brewer brewer) {
         if (brewer.getName() == null || brewer.getCountry() == null || brewer.getEstablished() == null) {
@@ -45,6 +63,22 @@ public class BrewersResource {
             return Response.status(Response.Status.CREATED).entity(brewer).build();
         } else {
             return Response.status(Response.Status.CONFLICT).entity(brewer).build();
+        }
+    }
+
+    @PUT
+    @Path("{brewerId}")
+    public Response putBrewer(@PathParam("brewerId") Integer brewerId, Brewer b) {
+
+        b = bean.putBrewer(brewerId, b);
+
+        if (b == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            if (b.getId() != null)
+                return Response.status(Response.Status.OK).entity(b).build();
+            else
+                return Response.status(Response.Status.NOT_MODIFIED).build();
         }
     }
 

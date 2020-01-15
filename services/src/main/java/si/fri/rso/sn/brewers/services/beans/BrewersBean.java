@@ -1,6 +1,8 @@
 package si.fri.rso.sn.brewers.services.beans;
 
 import com.kumuluz.ee.discovery.annotations.DiscoverService;
+import com.kumuluz.ee.rest.beans.QueryParameters;
+import com.kumuluz.ee.rest.utils.JPAUtils;
 import si.fri.rso.sn.brewers.models.dtos.Beer;
 import si.fri.rso.sn.brewers.models.entities.Brewer;
 import si.fri.rso.sn.brewers.services.configuration.AppProperties;
@@ -17,6 +19,7 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.core.GenericType;
+import javax.ws.rs.core.UriInfo;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
@@ -108,6 +111,12 @@ public class BrewersBean {
             return false;
 
         return true;
+    }
+
+    public List<Brewer> getBrewersFilter(UriInfo uriInfo) {
+        QueryParameters queryParameters = QueryParameters.query(uriInfo.getRequestUri().getQuery()).defaultOffset(0)
+                .build();
+        return JPAUtils.queryEntities(em, Brewer.class, queryParameters);
     }
 
     public List<Beer> getBeers(Integer breweryId) {
