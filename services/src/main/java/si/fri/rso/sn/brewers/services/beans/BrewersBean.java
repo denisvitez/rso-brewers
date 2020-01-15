@@ -127,6 +127,23 @@ public class BrewersBean {
         return null;
     }
 
+    public List<Beer> getBeers2(Integer breweryId) {
+
+        if (appProperties.isExternalServicesEnabled() && baseUrlBeers.isPresent()) {
+            try {
+                List<Beer> beers = httpClient
+                        .target("http://localhost:8080/v1/beers/filtered?where=breweryId:EQ:1")
+                        .request().get(new GenericType<List<Beer>>() {
+                        });
+                return beers;
+            } catch (WebApplicationException | ProcessingException e) {
+                log.severe(e.getMessage());
+                throw new InternalServerErrorException(e);
+            }
+        }
+        return null;
+    }
+
     public String getBeersEndpoint() {
         return baseUrlBeers.get();
     }
