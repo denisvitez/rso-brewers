@@ -72,4 +72,16 @@ public class BrewersResource {
 
         return Response.status(Response.Status.OK).entity(beers).build();
     }
+
+    @GET
+    @Path("{breweryId}/b2")
+    public Response getBreweryId(@PathParam("breweryId") Integer breweryId) {
+        return Response.status(Response.Status.OK).entity(breweryId).build();
+    }
+
+    @GET
+    @Path("{breweryId}/b3")
+    public Response getEndpoint() {
+        return Response.status(Response.Status.OK).entity(bean.getBeersEndpoint()).build();
+    }
 }

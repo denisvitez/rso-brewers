@@ -127,6 +127,10 @@ public class BrewersBean {
         return null;
     }
 
+    public String getBeersEndpoint() {
+        return baseUrlBeers.get();
+    }
+
     private void beginTx() {
         if (!em.getTransaction().isActive())
             em.getTransaction().begin();
