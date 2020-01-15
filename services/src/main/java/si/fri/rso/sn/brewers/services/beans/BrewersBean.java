@@ -148,6 +148,10 @@ public class BrewersBean {
         return baseUrlBeers.get();
     }
 
+    public String getCombinedBeersEndpoint(Integer breweryId) {
+        return baseUrlBeers.get() + "/v1/beers/filtered?where=breweryId:EQ:" + breweryId;
+    }
+
     private void beginTx() {
         if (!em.getTransaction().isActive())
             em.getTransaction().begin();

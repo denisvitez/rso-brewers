@@ -74,6 +74,20 @@ public class BrewersResource {
     }
 
     @GET
+    @Path("{breweryId}/beers2")
+    public Response getBeers2(@PathParam("breweryId") Integer breweryId) {
+
+        List<Beer> beers;
+        beers = bean.getBeers2(breweryId);
+
+        if (beers == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+
+        return Response.status(Response.Status.OK).entity(beers).build();
+    }
+
+    @GET
     @Path("{breweryId}/b2")
     public Response getBreweryId(@PathParam("breweryId") Integer breweryId) {
         return Response.status(Response.Status.OK).entity(breweryId).build();
@@ -83,5 +97,11 @@ public class BrewersResource {
     @Path("{breweryId}/b3")
     public Response getEndpoint() {
         return Response.status(Response.Status.OK).entity(bean.getBeersEndpoint()).build();
+    }
+
+    @GET
+    @Path("{breweryId}/b4")
+    public Response getEndpoint(@PathParam("breweryId") Integer breweryId) {
+        return Response.status(Response.Status.OK).entity(bean.getCombinedBeersEndpoint()).build();
     }
 }
