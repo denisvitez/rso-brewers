@@ -102,6 +102,6 @@ public class BrewersResource {
     @GET
     @Path("{breweryId}/b4")
     public Response getEndpoint(@PathParam("breweryId") Integer breweryId) {
-        return Response.status(Response.Status.OK).entity(bean.getCombinedBeersEndpoint()).build();
+        return Response.status(Response.Status.OK).entity(bean.getCombinedBeersEndpoint(breweryId)).build();
     }
 }
